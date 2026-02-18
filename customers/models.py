@@ -7,6 +7,7 @@ from django.db import models
 class Customer(models.Model):
     name = models.CharField(max_length=128, null=False, blank=False)
     notes = models.TextField(blank=True, null=True)     # Any notes the customer wants to make
+    pic = models.ImageField(upload_to='customers', default='no_image.png')    # Customer's picture
 
     def __str__(self):
         return self.name

@@ -9,6 +9,7 @@ class Salesperson(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=128, null=False, blank=False)
     bio = models.TextField(default='no bio...', blank=True, null=False)
+    pic = models.ImageField(upload_to='salespersons', default='no_image.png')    # Salesperson's picture
 
     def __str__(self):
         return f"{self.user.username}"
