@@ -1,6 +1,7 @@
 # books/models.py
 # This file defines the Book model for the bookstore application.
 from django.db import models
+from django.shortcuts import reverse
 
 # Book  model genre and type choices
 # These lists are shown as dropdowns to the user.
@@ -28,5 +29,10 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, help_text='in US dollars $')   # Allows to add a tooltip
     pic = models.ImageField(upload_to='books', default='no_image.png')    # Book's cover image
 
+    # String representation of the Book model, showing the title and author.
     def __str__(self):
         return f"{self.title} by {self.author}"
+    
+    # This method is used to get the URL for the detail view of a book instance.
+    def get_absolute_url(self):
+        return reverse ('books:detail', kwargs={'pk': self.pk})

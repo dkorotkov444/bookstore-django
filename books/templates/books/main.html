@@ -39,7 +39,11 @@
                     <img src="{{ book.pic.url }}" class="card-img-top" alt="{{ book.title }}">
                     
                     <div class="card-body">
-                        <h5 class="card-title text-truncate">{{ book.title }}</h5>
+                        <h5 class="card-title text-truncate">
+                            <a href="{{ book.get_absolute_url }}" class="text-decoration-none text-dark">
+                                {{ book.title }}
+                            </a>
+                        </h5>
                         <p class="card-text text-muted small">by {{ book.author }}</p>
                         <span class="badge bg-info text-dark">{{ book.get_genre_display }}</span>
                     </div>
