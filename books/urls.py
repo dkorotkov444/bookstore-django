@@ -1,9 +1,9 @@
 # books/urls.py
 from django.urls import path
-from .views import books
+from .views import BooksListView
 
 app_name = 'books'
 
 urlpatterns = [
-    path('', books, name='books'),
+    path('list/', BooksListView.as_view(), name='list'),    # Call .as_view() for class-based views
 ]
