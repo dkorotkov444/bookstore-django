@@ -5,11 +5,11 @@ from django.contrib.auth import authenticate, login         # Django authenticat
 from django.contrib.auth.forms import AuthenticationForm    # Django Form for authentication
 
 # Function-based view for handling login requests
-def login_view(request):            
+def login_view(request):  
+    error_message = None            # Default error message for invalid login          
     form = AuthenticationForm()     # Create an instance of the AuthenticationForm class
 
     if request.method == 'POST':        # Check if the request method is POST
-        error_message = None            # Default error message for invalid login
         form = AuthenticationForm(request, data=request.POST)       # Create an instance of the AuthenticationForm class with the POST data
         if form.is_valid():                                         # Check if the form is valid
             username = form.cleaned_data.get('username')            # Get the username from the cleaned data

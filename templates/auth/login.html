@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Our Bookstore{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    {% comment %} print heading {% endcomment %}
+                    <h1 class="card-title h3 mb-4 text-center">Login</h1>
+
+                    {% comment %} check for error message {% endcomment %}
+                    {% if error_message %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error_message }}
+                    </div>
+                    {% endif %}
+
+                    {% comment %} print form {% endcomment %}
+                    <form action="" method="POST">
+                        {% comment %} add Django security token {% endcomment %}
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            {% comment %} print form received from view {% endcomment %}
+                            {{ form.as_p }}
+                        </div>
+
+                        <div class="d-grid">
+                            {% comment %} add button {% endcomment %}
+                            <button type="submit" class="btn btn-dark btn-lg">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
