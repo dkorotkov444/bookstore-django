@@ -14,10 +14,10 @@ def login_view(request):
         if form.is_valid():                                             # Check if the form is valid
             username = form.cleaned_data.get('username')                # Get the username from the cleaned data
             password = form.cleaned_data.get('password')                # Get the password from the cleaned data
-            user = authenticate(username=username, password=password)   # Authenticate the user
-            if user is not None:                                        # i.e. the user is authenticated
-                login(request, user)                                    # Use pre-defined Django function to login
-                return redirect('sales:records')                        # Redirect to a success page.
+            user = authenticate(username=username, password=password)       # Authenticate the user
+            if user is not None:                                            # i.e. the user is authenticated
+                login(request, user)                                        # Use pre-defined Django function to login
+                return redirect(request.GET.get('next', 'sales:records'))   # Redirect to a success page.
         else:
             error_message = 'Invalid username or password.'     # Set error message for invalid login
     

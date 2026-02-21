@@ -85,6 +85,7 @@ DATABASES = {
     }
 }
 
+# AUTHENTICATION
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -104,6 +105,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Where to redirect users for login
+LOGIN_URL = 'login' 
+
+# Where to redirect users after a successful login (if no 'next' parameter is present)
+LOGIN_REDIRECT_URL = 'sales:records'
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
