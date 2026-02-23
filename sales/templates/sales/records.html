@@ -18,6 +18,10 @@
 
     {% if sales_df %}
         {{sales_df|safe}} 
+        <br>
+        {% if chart %}
+            <img src="data:image/png;base64,{{ chart|safe }}" alt="Chart">
+        {% endif %}
     {% else %}
         <h3> No data available</h3>
     {% endif %}
