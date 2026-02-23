@@ -31,7 +31,7 @@ class Book(models.Model):
 
     # String representation of the Book model, showing the title and author.
     def __str__(self):
-        return f"{self.title} by {self.author}"
+        return f"ID{self.id}: {self.title} by {self.author}"
     
     # This method is used to get the URL for the detail view of a book instance.
     def get_absolute_url(self):
