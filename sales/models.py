@@ -11,4 +11,4 @@ class Sale(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)                      # Date of sale - will be automatically set to the current date
 
     def __str__(self):
-        return f"ID:{self.id}, book: {self.book.title}, quantity: {self.quantity}, amount: $ {self.amount}"
+        return f"ID: {self.id}, book: {self.book.title}, quantity: {self.quantity}, amount: $ {self.amount}"

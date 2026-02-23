@@ -35,13 +35,15 @@ def records(request):
             sales_df['book_id']=book_title          # Directly overwrite book_id with book_title since we already have the book title
             # Rename 'book_id' to 'Book Title' and 'id' to 'Sale ID' (or any others)
             sales_df.rename(columns={'book_id': 'Book Title', 'id': 'Sale ID'}, inplace=True)
-            sales_df=sales_df.to_html(index=False)             # Convert the DataFrame to HTML format for rendering in the template, removing line numbers (index=False)
 
             # Generate chart
             chart = get_chart(chart_type, sales_df, labels=sales_df['date_created'].values)
 
+            # Convert the DataFrame to HTML format for rendering in the template, removing line numbers (index=False)
+            sales_df=sales_df.to_html(index=False)             
+
             # --- DEBUG --- EXPOLRE QUERYSETS ---
-            explore_querysets()       # Call the function to explore querysets and understand the output of different queryset methods
+            explore_querysets(book_title)       # Call the function to explore querysets and understand the output of different queryset methods
 
     else:
         form = SalesSearchForm()       # If the button is not clicked, create an instance of the SalesSearchForm class and assign it to the variable form

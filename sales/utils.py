@@ -5,6 +5,7 @@ from io import BytesIO
 import base64
 import matplotlib.pyplot as plt
 from books.models import Book
+from .models import Sale
 
 # Function retrieved book title by ID
 def get_booktitle_from_id(val):
@@ -42,13 +43,13 @@ def get_chart(chart_type, data, **kwargs):
         plt.bar(data['date_created'], data['quantity'])
 
     elif chart_type == '#2':
-        # Generate pie chart based on the price. The book titles are sent from the view as labels
+        # Generate pie chart based on the amount. The book titles are sent from the view as labels
         labels=kwargs.get('labels')
-        plt.pie(data['price'], labels=labels)
+        plt.pie(data['amount'], labels=labels)
 
     elif chart_type == '#3':
-        # Plot line chart based on date on x-axis and price on y-axis
-        plt.plot(data['date_created'], data['price'])
+        # Plot line chart based on date on x-axis and amount on y-axis
+        plt.plot(data['date_created'], data['amount'])
     else:
         print ('Unknown chart type')
 
@@ -57,7 +58,7 @@ def get_chart(chart_type, data, **kwargs):
     return chart  
 
 # Function to explore querysets and understand the output of different queryset methods
-def explore_querysets():
+def explore_querysets(book_title):
     print ('Exploring querysets:')
     print ('\nCase 1: Output of Sale.objects.all()')
     qs=Sale.objects.all()
