@@ -26,7 +26,7 @@ def records(request):
         book_title = request.POST.get('book_title')
         chart_type = request.POST.get('chart_type')
         #--- DEBUG --- Display in terminal
-        print (book_title, chart_type)
+        #print (f"\nbook_title: {book_title}, chart_type: {chart_type}")
 
         # Apply filter to extract sales data for the selected book title
         qs =Sale.objects.filter(book__title=book_title)
@@ -43,7 +43,7 @@ def records(request):
             sales_df=sales_df.to_html(index=False)             
 
             # --- DEBUG --- EXPOLRE QUERYSETS ---
-            explore_querysets(book_title)       # Call the function to explore querysets and understand the output of different queryset methods
+            #explore_querysets(book_title)       # Call the function to explore querysets and understand the output of different queryset methods
 
     else:
         form = SalesSearchForm()       # If the button is not clicked, create an instance of the SalesSearchForm class and assign it to the variable form

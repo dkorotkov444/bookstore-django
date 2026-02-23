@@ -59,7 +59,7 @@ def get_chart(chart_type, data, **kwargs):
 
 # Function to explore querysets and understand the output of different queryset methods
 def explore_querysets(book_title):
-    print ('Exploring querysets:')
+    print ('\nExploring querysets:')
     print ('\nCase 1: Output of Sale.objects.all()')
     qs=Sale.objects.all()
     for item in qs:
@@ -82,3 +82,4 @@ def explore_querysets(book_title):
     obj = Sale.objects.get(id=1)
     for field in obj._meta.fields:
         print (f'{field.name}: {getattr(obj, field.name)}')
+    print ("\n")
