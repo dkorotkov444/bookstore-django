@@ -26,8 +26,8 @@ class Book(models.Model):
     author = models.CharField(max_length=128, null=False, blank=False)
     genre = models.CharField(max_length=16, choices=genre_choices, default='classic', null=False, blank=False)
     book_type = models.CharField(max_length=16, choices=book_type_choices, default='hardcover', null=False, blank=False)
-    price = models.DecimalField(max_digits=10, decimal_places=2, help_text='in US dollars $')   # Allows to add a tooltip
-    pic = models.ImageField(upload_to='books', default='no_image.png')    # Book's cover image
+    price = models.DecimalField(max_digits=10, decimal_places=2, help_text='in US dollars $')           # Allows to add a tooltip
+    pic = models.ImageField(upload_to='books', default='no_image.png')                                  # Book's cover image
 
     # String representation of the Book model, showing the title and author.
     def __str__(self):

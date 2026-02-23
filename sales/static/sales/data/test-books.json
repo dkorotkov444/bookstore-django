@@ -3,96 +3,88 @@
       "model": "books.book",
       "pk": 1,
       "fields": {
-        "title": "Shosha",
-        "author": "Isaac Bashevis Singer",
+        "title": "The Brothers Karamazov",
+        "author": "Fyodor Dostoevsky",
         "genre": "classic",
         "book_type": "hardcover",
-        "price": "18.50",
-        "pic": "books/shosha.jpg"
+        "price": "24.80"
       }
     },
     {
       "model": "books.book",
       "pk": 2,
       "fields": {
-        "title": "The Great Gatsby",
-        "author": "F. Scott Fitzgerald",
+        "title": "Tevye the Dairyman",
+        "author": "Sholem Aleichem",
         "genre": "classic",
-        "book_type": "ebook",
-        "price": "9.99",
-        "pic": "books/gatsby.jpg"
+        "book_type": "hardcover",
+        "price": "34.99"
       }
     },
     {
       "model": "books.book",
       "pk": 3,
       "fields": {
-        "title": "Dracula",
-        "author": "Bram Stoker",
-        "genre": "horror",
+        "title": "Macbeth",
+        "author": "William Shakespeare",
+        "genre": "classic",
         "book_type": "hardcover",
-        "price": "22.00",
-        "pic": "books/dracula.jpg"
+        "price": "17.60"
       }
     },
     {
       "model": "books.book",
       "pk": 4,
       "fields": {
-        "title": "The Hobbit",
-        "author": "J.R.R. Tolkien",
-        "genre": "fantasy",
-        "book_type": "audiobook",
-        "price": "25.00",
-        "pic": "books/hobbit.jpg"
+        "title": "The Town of the Little People",
+        "author": "Sholem Aleichem",
+        "genre": "classic",
+        "book_type": "hardcover",
+        "price": "16.50"
       }
     },
     {
       "model": "books.book",
       "pk": 5,
       "fields": {
-        "title": "Clean Code",
-        "author": "Robert C. Martin",
-        "genre": "educational",
+        "title": "The Idiot",
+        "author": "Fyodor Dostoevsky",
+        "genre": "classic",
         "book_type": "ebook",
-        "price": "32.99",
-        "pic": "books/cleancode.jpg"
+        "price": "12.00"
       }
     },
     {
       "model": "books.book",
       "pk": 6,
       "fields": {
-        "title": "Watchmen",
-        "author": "Alan Moore",
-        "genre": "comic",
-        "book_type": "hardcover",
-        "price": "19.95",
-        "pic": "books/watchmen.jpg"
+        "title": "Anna Karenina",
+        "author": "Leo Tolstoy",
+        "genre": "classic",
+        "book_type": "ebook",
+        "price": "24.50"
       }
     },
     {
       "model": "books.book",
       "pk": 7,
       "fields": {
-        "title": "Frankenstein",
-        "author": "Mary Shelley",
-        "genre": "horror",
-        "book_type": "ebook",
-        "price": "7.50",
-        "pic": "books/frankenstein.jpg"
+        "title": "The Slave",
+        "author": "Isaac Bashevis Singer",
+        "genre": "classic",
+        "book_type": "hardcover",
+        "price": "17.00"
       }
     },
     {
       "model": "books.book",
       "pk": 8,
       "fields": {
-        "title": "Introduction to Algorithms",
-        "author": "Thomas H. Cormen",
-        "genre": "educational",
-        "book_type": "hardcover",
-        "price": "85.00",
-        "pic": "books/algorithms.jpg"
+        "title": "Crime and Punishment",
+        "author": "Fyodor Dostoevsky",
+        "genre": "classic",
+        "book_type": "ebook",
+        "price": "11.50"
       }
     },
     {
@@ -103,104 +95,106 @@
         "author": "William Shakespeare",
         "genre": "classic",
         "book_type": "hardcover",
-        "price": "15.00",
-        "pic": "books/king_lear.jpg"
+        "price": "14.99"
       }
     },
     {
       "model": "books.book",
       "pk": 10,
       "fields": {
-        "title": "Crime and Punishment",
-        "author": "Fyodor Dostoevsky",
-        "genre": "classic",
-        "book_type": "ebook",
-        "price": "11.50",
-        "pic": "books/crime_punishment.jpg"
+        "title": "Introduction to Algorithms",
+        "author": "Thomas H. Cormen",
+        "genre": "educational",
+        "book_type": "hardcover",
+        "price": "85.00"
       }
     },
     {
       "model": "books.book",
       "pk": 11,
       "fields": {
-        "title": "The Slave",
-        "author": "Isaac Bashevis Singer",
-        "genre": "classic",
-        "book_type": "hardcover",
-        "price": "17.00",
-        "pic": "books/the_slave.jpg"
+        "title": "Frankenstein",
+        "author": "Mary Shelley",
+        "genre": "horror",
+        "book_type": "ebook",
+        "price": "8.50"
       }
     },
     {
       "model": "books.book",
       "pk": 12,
       "fields": {
-        "title": "Anna Karenina",
-        "author": "Leo Tolstoy",
-        "genre": "classic",
-        "book_type": "audiobook",
-        "price": "24.95",
-        "pic": "books/anna_karenina.jpg"
+        "title": "Watchmen",
+        "author": "Alan Moore",
+        "genre": "comic",
+        "book_type": "hardcover",
+        "price": "19.95"
       }
     },
     {
       "model": "books.book",
       "pk": 13,
       "fields": {
-        "title": "The Idiot",
-        "author": "Fyodor Dostoevsky",
-        "genre": "classic",
+        "title": "Clean Code",
+        "author": "Robert C. Martin",
+        "genre": "educational",
         "book_type": "ebook",
-        "price": "12.00",
-        "pic": "books/the_idiot.jpg"
+        "price": "32.99"
       }
     },
     {
       "model": "books.book",
       "pk": 14,
       "fields": {
-        "title": "The Town of the Little People",
-        "author": "Sholem Aleichem",
-        "genre": "classic",
-        "book_type": "hardcover",
-        "price": "16.50",
-        "pic": "books/kasrilovka.jpg"
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "genre": "fantasy",
+        "book_type": "audiobook",
+        "price": "25.49"
       }
     },
     {
       "model": "books.book",
       "pk": 15,
       "fields": {
-        "title": "Macbeth",
-        "author": "William Shakespeare",
-        "genre": "classic",
+        "title": "Dracula",
+        "author": "Bram Stoker",
+        "genre": "horror",
         "book_type": "hardcover",
-        "price": "12.99",
-        "pic": "books/macbeth.jpg"
+        "price": "22.00"
       }
     },
     {
       "model": "books.book",
       "pk": 16,
       "fields": {
-        "title": "Tevye the Dairyman",
-        "author": "Sholem Aleichem",
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
         "genre": "classic",
-        "book_type": "hardcover",
-        "price": "14.00",
-        "pic": "books/tevye.jpg"
+        "book_type": "ebook",
+        "price": "9.99"
       }
     },
     {
       "model": "books.book",
       "pk": 17,
       "fields": {
+        "title": "Shosha",
+        "author": "Isaac Bashevis Singer",
+        "genre": "classic",
+        "book_type": "hardcover",
+        "price": "18.50"
+      }
+    },
+    {
+      "model": "books.book",
+      "pk": 18,
+      "fields": {
         "title": "Generation P",
         "author": "Victor Pelevin",
         "genre": "classic",
-        "book_type": "ebook",
-        "price": "19.00",
-        "pic": "books/generation_p.jpg"
+        "book_type": "hardcover",
+        "price": "12.99"
       }
     }
   ]
