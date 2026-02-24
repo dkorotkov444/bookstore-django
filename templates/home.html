@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - Our Bookstore{% endblock %}
+
+{% block content %}
+<div class="position-relative w-100 overflow-hidden" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+    <img src="{% static 'images/bookstore.jpg' %}" alt="home" class="w-100 h-100 position-absolute top-0 start-0" style="object-fit: cover; z-index: 1; filter: brightness(0.5);">
+    <div class="position-relative text-center" style="z-index: 2;">
+        <h1 class="display-3 fw-bold text-white bg-dark bg-opacity-75 d-inline-block px-4 py-3 rounded">Welcome to our Bookstore</h1>
+    </div>
+</div>
+{% endblock %}

@@ -4,6 +4,10 @@ from django.shortcuts import render, redirect                       # Django fun
 from django.contrib.auth import authenticate, login, logout         # Django authentication libraries   
 from django.contrib.auth.forms import AuthenticationForm            # Django Form for authentication
 
+# Function-based view to display homepage
+def home(request):
+    return render(request, 'home.html')
+
 # Function-based view for handling login requests
 def login_view(request):  
     error_message = None            # Default error message for invalid login          

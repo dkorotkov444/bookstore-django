@@ -5,14 +5,10 @@ from django.contrib.auth.decorators import login_required
 import pandas as pd
 from .models import Sale
 from .forms import SalesSearchForm
-from .utils import get_chart, explore_querysets
+from .utils import get_chart #explore_querysets
 
 
 # Create your views here.
-# Function-based view to display homepage
-def home(request):
-    return render(request, 'sales/home.html')
-
 # Function-based view records()
 @login_required
 def records(request):

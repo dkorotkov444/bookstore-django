@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import login_view, logout_view
+from .views import home, login_view, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home, name='home'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
-    path('', include('sales.urls')),
+    path('sales/', include('sales.urls')),
     path('books/', include('books.urls')),
     path('customers/', include('customers.urls')),
     path('salespersons/', include('salespersons.urls')),
