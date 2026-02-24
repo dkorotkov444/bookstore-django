@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block title %}Home - Our Bookstore{% endblock %}
 
 {% block content %}
@@ -10,4 +9,8 @@
         <h1 class="display-3 fw-bold text-white bg-dark bg-opacity-75 d-inline-block px-4 py-3 rounded">Welcome to our Bookstore</h1>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/home.js' %}" defer></script>
 {% endblock %}
