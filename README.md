@@ -141,3 +141,28 @@ bookstore-py/
 
 - Static files are served from `static/`; uploaded media is served from `media/`.
 - Default login redirect goes to sales records (`sales:records`).
+
+## Securioty considerations for cloud deployment
+
+- Start from `.env.example` and create your local `.env` per environment.
+- Keep `SECRET_KEY` in environment variables (never in source control).
+- Set `DEBUG=False` in production.
+- Define `ALLOWED_HOSTS` explicitly (comma-separated), for example: `yourdomain.com,www.yourdomain.com`.
+- Define `CSRF_TRUSTED_ORIGINS` with full scheme, for example: `https://yourdomain.com,https://www.yourdomain.com`.
+- Keep HTTPS and secure cookies enabled in production (`SECURE_SSL_REDIRECT`, `SESSION_COOKIE_SECURE`, `CSRF_COOKIE_SECURE`).
+- Add HSTS in production:
+    - `SECURE_HSTS_SECONDS=31536000`
+    - `SECURE_HSTS_INCLUDE_SUBDOMAINS=True`
+    - `SECURE_HSTS_PRELOAD=True`
+- Add explicit browser hardening headers:
+    - `SECURE_CONTENT_TYPE_NOSNIFF=True`
+    - `X_FRAME_OPTIONS=DENY`
+    - `SECURE_REFERRER_POLICY=same-origin`
+- Run deployment checks before release:
+
+```powershell
+python manage.py check --deploy
+```
+
+- If your cloud platform terminates TLS at a proxy/load balancer, also set:
+    - `SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')`
