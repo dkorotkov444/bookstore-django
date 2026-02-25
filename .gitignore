@@ -16,10 +16,17 @@ venv/
 env/
 
 # Django / local runtime artifacts
+*.sqlite3
+*.db
 *.sqlite3-journal
 *.sqlite3-shm
 *.sqlite3-wal
 *.log
+
+# Text backup files
+*.txt.bak
+*.bak.txt
+*~
 
 # Test / coverage artifacts
 .pytest_cache/
