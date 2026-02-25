@@ -1,0 +1,27 @@
+# Python bytecode (compiled files)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VS Code settings
+.vscode/
+
+# Local variables/secrets
+.env
+
+# Local virtual environments
+venv/
+.venv/
+env/
+
+# Django / local runtime artifacts
+*.sqlite3-journal
+*.sqlite3-shm
+*.sqlite3-wal
+*.log
+
+# Test / coverage artifacts
+.pytest_cache/
+.coverage
+htmlcov/
