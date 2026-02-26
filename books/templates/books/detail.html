@@ -19,7 +19,11 @@
 <div class="container py-5">
     <div class="row bg-white p-4 rounded shadow-sm">
         <div class="col-md-5 text-center mb-4 mb-md-0">
-            <img src="{{ book.pic.url }}" class="detail-img" alt="{{ book.title }}">
+            {% if book.pic %}
+                <img src="{{ book.pic.url }}" class="detail-img" alt="{{ book.title }}">
+            {% else %}
+                <img src="{% static 'images/no_image.png' %}" alt="No image available">
+            {% endif %}
         </div>
 
         <div class="col-md-7">

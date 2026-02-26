@@ -28,7 +28,11 @@
         {% for book in books %} 
         <div class="col">
             <div class="card book-card h-100 shadow-sm position-relative">
-                <img src="{{ book.pic.url }}" class="card-img-top" alt="{{ book.title }}">
+                {% if book.pic %}
+                    <img src="{{ book.pic.url }}" class="card-img-top" alt="{{ book.title }}">
+                {% else %}
+                    <img src="{% static 'images/no_image.png' %}" alt="No image available">
+                {% endif %}
                 <div class="card-body">
                     <h5 class="card-title text-truncate">
                         <a href="{{ book.get_absolute_url }}" class="text-decoration-none text-dark stretched-link">
