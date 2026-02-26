@@ -39,8 +39,6 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-dev-only-change-me') # <
 # This will correctly see "DEBUG=True" in .env 
 DEBUG = env('DEBUG')
 
-print(f"DEBUG IS CURRENTLY: {DEBUG}")
-
 # env.list() reads the comma-separated string from .env and turns it into a Python list.
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['127.0.0.1', 'localhost']) # 
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[]) #
