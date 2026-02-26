@@ -1,42 +1,140 @@
 # Bookstore Django Application
 
-This repository contains a Django-based Bookstore web application with authentication, catalog browsing, customer/salesperson sections, and searchable sales records with chart visualization.
+A Django-based bookstore app with authentication, catalog browsing, customer/salesperson sections, and sales record search with chart visualization.
 
 ## Tech Stack
 
 - Python 3
 - Django 6
-- SQLite (`db.sqlite3`)
-- Pandas + Matplotlib (sales table/chart generation)
+- SQLite by default (`db.sqlite3`) with optional `DATABASE_URL` override
+- Pandas + Matplotlib (sales table + charts)
 - Bootstrap 5 (UI)
+- WhiteNoise + Gunicorn (production serving)
 
-## Features
+## What This Project Includes
 
-- Authentication with custom login/logout views
-- Protected pages using `login_required` and `LoginRequiredMixin`
-- Book catalog list and book detail pages with image support
-- Sales records search by book title and chart type (bar, pie, line)
-- Customer and salesperson sections
-- Django admin registrations for all core models (`Book`, `Sale`, `Customer`, `Salesperson`)
+- Custom login/logout views (`/login/`, `/logout/`)
+- Auth-protected catalog and sales pages
+- Book list + detail pages with uploaded cover images
+- Sales records filtering by book title with chart output:
+  - Bar chart
+  - Pie chart
+  - Line chart
+- Basic customers and salespersons pages
+- Django admin registrations for:
+  - `Book`
+  - `Sale`
+  - `Customer`
+  - `Salesperson`
+
+## App Overview
+
+- `bookstore/` (project config)
+  - Global URL routing
+  - Authentication/home views
+  - Environment-based settings (`django-environ`)
+- `books/`
+  - `Book` model
+  - Class-based list/detail views (`LoginRequiredMixin`)
+- `sales/`
+  - `Sale` model
+  - Search form + records view (`@login_required`)
+  - Pandas DataFrame rendering + Matplotlib chart generation
+- `customers/`
+  - `Customer` model
+  - Basic customers home view
+- `salespersons/`
+  - `Salesperson` model linked to Django `User`
+  - Basic salespersons home view
 
 ## URL Map
 
-- `/` → Home page
+- `/` → Home
 - `/login/` and `/logout/` → Authentication
 - `/books/list/` and `/books/detail/<pk>/` → Catalog
-- `/sales/` → Sales records search and chart output
-- `/customers/` → Customers section
-- `/salespersons/` → Salespersons section
+- `/sales/` → Sales records search + chart
+- `/customers/` → Customers home
+- `/salespersons/` → Salespersons home
 - `/admin/` → Django admin
+
+## Project Structure
+
+```text
+bookstore-django/
+├── manage.py
+├── requirements.txt
+├── Procfile
+├── db.sqlite3
+├── .env.example
+├── README.md
+├── bookstore/
+│   ├── settings.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── wsgi.py
+│   └── asgi.py
+├── books/
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── admin.py
+│   ├── migrations/
+│   └── templates/books/
+├── sales/
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── forms.py
+│   ├── utils.py
+│   ├── admin.py
+│   ├── migrations/
+│   └── templates/sales/
+├── customers/
+│   ├── models.py
+│   ├── views.py
+│   └── templates/customers/
+├── salespersons/
+│   ├── models.py
+│   ├── views.py
+│   └── templates/salespersons/
+├── templates/
+│   ├── base.html
+│   ├── home.html
+│   └── auth/login.html
+├── static/
+│   ├── css/
+│   ├── js/
+│   ├── images/
+│   └── data/
+└── media/
+  ├── books/
+  ├── customers/
+  └── salespersons/
+```
+
+## Data Model Summary
+
+- `Book`
+  - `title`, `author`, `genre`, `book_type`, `price`, `pic`
+- `Sale`
+  - `book` (FK to `Book`), `quantity`, `amount`, `date_created`
+- `Customer`
+  - `name`, `notes`, `pic`
+- `Salesperson`
+  - `user` (OneToOne to Django `User`), `name`, `bio`, `pic`
 
 ## Setup (Windows PowerShell)
 
-From the project root (`bookstore-py`):
+From the project root (`bookstore-django`):
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-pip install django pandas matplotlib pillow
+pip install -r requirements.txt
+Copy-Item .env.example .env
+# Environment Setup: "Copy .env.example to .env and update your SECRET_KEY".
+# Then open .env and set SECRET_KEY to a strong unique value.
+
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
@@ -44,125 +142,34 @@ python manage.py runserver
 
 Open: `http://127.0.0.1:8000/`
 
-## Project Structure
+## Environment Variables
 
-```text
-bookstore-py/
-├── .gitignore
-├── db.sqlite3
-├── manage.py
-├── README.md
-├── bookstore/
-│   ├── __init__.py
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   ├── views.py
-│   └── wsgi.py
-├── books/
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── tests.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── migrations/
-│   └── templates/
-│       └── books/
-│           ├── detail.html
-│           └── main.html
-├── sales/
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── forms.py
-│   ├── models.py
-│   ├── tests.py
-│   ├── urls.py
-│   ├── utils.py
-│   ├── views.py
-│   ├── migrations/
-│   └── templates/
-│       └── sales/
-│           └── records.html
-├── customers/
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── tests.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── migrations/
-│   └── templates/
-│       └── customers/
-│           └── home.html
-├── salespersons/
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── tests.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── migrations/
-│   └── templates/
-│       └── salespersons/
-│           └── salesperson.html
-├── templates/
-│   ├── base.html
-│   ├── home.html
-│   └── auth/
-│       └── login.html
-├── static/
-│   ├── css/
-│   │   └── style.css
-│   ├── data/
-│   │   └── test-books.json
-│   ├── images/
-│   │   └── bookstore.jpg
-│   └── js/
-│       └── home.js
-└── media/
-    ├── no_image.png
-    ├── books/
-    └── customers/
+The app reads configuration from `.env` via `django-environ`.
+
+Minimum local settings:
+
+```dotenv
+SECRET_KEY=replace-with-your-own-value
+DEBUG=True
+ALLOWED_HOSTS=127.0.0.1,localhost
+CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000,http://localhost:8000
 ```
 
-## Data Model Summary
+You can start from `.env.example` and adjust values per environment.
 
-- `Book`: title, author, genre, type, price, cover image
-- `Sale`: linked `Book`, quantity, total amount, timestamp
-- `Customer`: name, notes, image
-- `Salesperson`: linked Django `User`, name, bio, image
+## Static and Media
 
-## Notes
+- Static source: `static/`
+- Collected static output: `staticfiles/` (used in production)
+- Uploaded media root: `media/`
 
-- Static files are served from `static/`; uploaded media is served from `media/`.
-- Default login redirect goes to sales records (`sales:records`).
+## Production Notes
 
-## Securioty considerations for cloud deployment
-
-- Start from `.env.example` and create your local `.env` per environment.
-- Keep `SECRET_KEY` in environment variables (never in source control).
-- Set `DEBUG=False` in production.
-- Define `ALLOWED_HOSTS` explicitly (comma-separated), for example: `yourdomain.com,www.yourdomain.com`.
-- Define `CSRF_TRUSTED_ORIGINS` with full scheme, for example: `https://yourdomain.com,https://www.yourdomain.com`.
-- Keep HTTPS and secure cookies enabled in production (`SECURE_SSL_REDIRECT`, `SESSION_COOKIE_SECURE`, `CSRF_COOKIE_SECURE`).
-- Add HSTS in production:
-    - `SECURE_HSTS_SECONDS=31536000`
-    - `SECURE_HSTS_INCLUDE_SUBDOMAINS=True`
-    - `SECURE_HSTS_PRELOAD=True`
-- Add explicit browser hardening headers:
-    - `SECURE_CONTENT_TYPE_NOSNIFF=True`
-    - `X_FRAME_OPTIONS=DENY`
-    - `SECURE_REFERRER_POLICY=same-origin`
+- `Procfile` runs: `gunicorn bookstore.wsgi --log-file -`
+- WhiteNoise is enabled in middleware for static files
+- Security settings are applied when `DEBUG=False` (SSL redirect, secure cookies, HSTS, hardening headers)
 - Run deployment checks before release:
 
 ```powershell
 python manage.py check --deploy
 ```
-
-- If your cloud platform terminates TLS at a proxy/load balancer, also set:
-    - `SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')`
