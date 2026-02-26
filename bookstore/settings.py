@@ -1,3 +1,4 @@
+# bookstore/settings.py
 """
 Django settings for bookstore project.
 
@@ -95,17 +96,11 @@ WSGI_APPLICATION = 'bookstore.wsgi.application'
 # --- DATABASE ---
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
-# This block now handles both local SQLite and Cloud Databases
+# This handles both local SQLite and Cloud Databases using the env object
 DATABASES = {
     'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        # We now pull the URL through env() with the same SQLite fallback 
+        default=env('DATABASE_URL', default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
         conn_max_age=600,
         conn_health_checks=True,
     )
@@ -163,8 +158,25 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT= BASE_DIR / 'media'
 
 
-# Security settings for production
-#if not DEBUG:
-#    SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', 'True') == 'True'
-#    SESSION_COOKIE_SECURE = True
-#    CSRF_COOKIE_SECURE = True
+# --- SECURITY SETTINGS FOR PRODUCTION ---
+# These settings only activate when DEBUG is False to prevent local SSL errors while keeping cloud deployment secure.
+
+if not DEBUG:
+    # --- CHANGED: Use env.bool for the SSL redirect ---
+    # This defaults to True in production but can be toggled in .env
+    SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=True) #
+
+    # Standard production security headers
+    SESSION_COOKIE_SECURE = True #
+    CSRF_COOKIE_SECURE = True #
+    
+    # --- NEW: Added HSTS (Strict Transport Security) ---
+    # This tells browsers to ONLY communicate with your site via HTTPS
+    SECURE_HSTS_SECONDS = env.int('SECURE_HSTS_SECONDS', default=31536000) #
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True #
+    SECURE_HSTS_PRELOAD = True #
+
+    # --- NEW: Browser Hardening ---
+    SECURE_CONTENT_TYPE_NOSNIFF = True #
+    X_FRAME_OPTIONS = 'DENY' #
+    SECURE_REFERRER_POLICY = 'same-origin' #
